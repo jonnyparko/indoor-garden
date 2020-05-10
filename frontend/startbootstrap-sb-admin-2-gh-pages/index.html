@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title>Gr0w R0()M - Dashboard</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,26 +22,34 @@
 
 </head>
 <script>
+  // get humidity and temperature reading
   $( document ).ready(function() {
     $.get("/room", function(data) {
-      console.log( "Foo function result:", data );
       document.getElementById('temperature').innerHTML = data.tempFarenheit + '&#8457';  
       document.getElementById('humidity').innerHTML = data.humidity + '%';  
   });
   
-  $.get("/image.jpg", function(data) {
-    document.getElementById("still-image").src = '/image.jpg';
-  });
+//  $.get("/image.jpg", function(data) {
+//    document.getElementById("still-image").src = '/image.jpg';
+//  });
+  
+  // get still image capture on reload
+  var img = new Image(),
+  url = "/image.jpg",
+  container = document.getElementById("still-image");
+
+  img.onload = function () { container.appendChild(img); };
+  img.src = url;
+  img.classList.add("still-image-capture");
   
 });
-
-  (function() {
-  $.get("/room", function(data) {
-    console.log( "Foo function result:", data );
-  });
-});
-
 </script>
+<style>
+.still-image-capture {
+  max-width: 100%;
+  height: auto;
+}
+</style>
 <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -427,8 +435,9 @@
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <img alt="Still image capture" id="still-image" style="width: 79%; height: auto;">
+                    <div class="still-image-capture" id="still-image">
+                      <!-- still image capture -->
+                    </div>
                   </div>
                 </div>
               </div>
