@@ -1,14 +1,16 @@
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
+
+// load data from db
   $.get("/load", function(data) {
-  console.log(data);
-  var label = [];
-  var temp = [];
-  for (var i = 0; i < data.length; i++) {
-    label[i] = data[i].timeDate;
-    temp[i] = data[i].tempFarenheit;
-  }
+    var label = [];
+    var temp = [];
+    // create label and temp values
+    for (var i = 0; i < data.length; i++) {
+      label[i] = data[i].timeDate;
+      temp[i] = data[i].tempFarenheit;
+    }
 
     function number_format(number, decimals, dec_point, thousands_sep) {
       // *     example: number_format(1234.56, 2, ',', ' ');
