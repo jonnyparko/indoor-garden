@@ -3,7 +3,7 @@ Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,Bli
 Chart.defaults.global.defaultFontColor = '#858796';
 
 // load data from db
-  $.get("/load", function(data) {
+  $.get("http://192.168.1.129:3000/load", function(data) {
     var label = [];
     var temp = [];
     // create label and temp values
